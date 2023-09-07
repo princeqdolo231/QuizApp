@@ -18,35 +18,41 @@
         <div>
             <h3>First Marking Period Test</h3>
         </div>
-        <div id="">
-            <h5>Name</h5>
-            <input>
-        </div>
-        <div>
-            <h5>Class</h5>
-            <select required>
-                <option value="" disabled selected hidden>Select Class</option>
-                <option value="">Grade 1</option>
-                <option value="">Grade 2</option>
-                <option value="">Grade 3</option>
-                <option value="">Grade 4</option>
-                <option value="">Grade 5</option>
-            </select>
-        </div>
-        <div>
-            <h5>
-                Select Subject
-            </h5>
-            <div>
-                <a href="#">English</a>
-                <a href="#">Science</a>
-                <a href="#">Reading</a>
-                <a href="#">Social Studies</a>
+
+        <form>
+            <div id="">
+                <label for="name">Name:</label>
+                <input required name="full name" type="text">
             </div>
-        </div>
+            <div>
+                <label>Class</label>
+                <select name="class" required>
+                    <option value="" disabled selected hidden>Select Class</option>
+                    <option value="">Grade 1</option>
+                    <option value="">Grade 2</option>
+                    <option value="">Grade 3</option>
+                    <option value="">Grade 4</option>
+                    <option value="">Grade 5</option>
+                </select>
+            </div>
+            <div>
+                <fieldset>
+                    <legend>Select Subject</legend>
+                    <input required type="radio" name="subject"> English
+                    <input required type="radio" name="subject"> Science
+                    <input required type="radio" name="subject"> Reading
+                    <input required type="radio" name="subject"> Social Studies
+                </fieldset>
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
+        
         
     
     <!--JavaScript Files Links Below-->
-    <script src="./JavaScript/hello.js"></script>    
+    <script>
+
+    </script>    
     </body>
 </html>
