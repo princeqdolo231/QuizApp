@@ -20,32 +20,29 @@
         </div>
 
         <form id="myform">
-            <div id="">
+            
                 <label for="name">Name:</label>
                 <input id="name" required name="full name" type="text">
-            </div>
-            <div>
+        
                 <label for="class">Class</label>
-                <select id="class" name="class" required>
+                <select id="grade" name="class" required>
                     <option value="" disabled selected hidden>Select Class</option>
-                    <option value="">Grade 1</option>
-                    <option value="">Grade 2</option>
-                    <option value="">Grade 3</option>
-                    <option value="">Grade 4</option>
-                    <option value="">Grade 5</option>
+                    <option value="Grade 1">Grade 1</option>
+                    <option value="Grade 2">Grade 2</option>
+                    <option value="Grade 3">Grade 3</option>
+                    <option value="Grade 4">Grade 4</option>
+                    <option value="Grade 5">Grade 5</option>
                 </select>
-            </div>
-            <div>
-                <fieldset>
-                    <legend>Select Subject</legend>
-                    <input id="select-english" required type="radio" name="subject" value="English"> English
-                    <input id="select-science" required type="radio" name="subject" value="Science"> Science
-                    <input id="select-reading" required type="radio" name="subject" value="Reading"> Reading
-                    <input id="select-social-studies" required type="radio" name="subject" value="Social Studies"> Social Studies
-                </fieldset>
-            </div>
 
-            <button type="button" id="submitbtn">Submit</button>
+                <fieldset>
+                    <label for="subject">Subject</label>
+                    <input required type="radio" name="subject" value="english"> English
+                    <input required type="radio" name="subject" value="science"> Science
+                    <input required type="radio" name="subject" value="reading"> Reading
+                    <input required type="radio" name="subject" value="social studies"> Social Studies
+                </fieldset>
+
+            <button type="button" id="submitBtn">Submit</button>
         </form>
         
         
@@ -59,13 +56,29 @@
             event.preventDefault();
 
             // Get values from the form
-            const name = document.getElementById('name').value;
-            const age = document.getElementById
+            let name = document.getElementById('name').value;
+            let grade = document.getElementById('grade').value;
+            let subjectRadios = document.getElementsByName('subject');
+
+            let selectedSubject = '';
+            for (const radio of subjectRadios) {
+                if (radio.checked) {
+                    selectedSubject = radio.value;
+                    break;
+                }
+            }
+
+            // let english = document.getElementById('select-english').value
+            // let science = document.getElementById('select-science').value
+            // let reading = document.getElementById('select-reading').value
+            // let social_studies = document.getElementById('select-social-studies').value
+
 
             // Create an object with the form data
             const formData = {
                 name: name,
-                age: age
+                grade: grade,
+                subject: selectedSubject,
             };
 
             // Add the object to the array
@@ -73,10 +86,14 @@
 
             // Optional: Clear the form fields
             document.getElementById('name').value = '';
-            document.getElementById('age').value = '';
+            document.getElementById('grade').value = '';
+            subjectRadios.forEach(radio => {
+                radio.checked = false
+            });
 
-            // Optional: Display the current array in the console
-            console.log(objectArray);
+            // Redirect to display.html with the objectArray as a query parameter
+            const queryParams = `data=${encodeURIComponent(JSON.stringify(objectArray))}`;
+            window.location.href = `question.html?${queryParams}`;
         }
 
         // Add an event listener to the submit button
