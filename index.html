@@ -6,6 +6,8 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
         <header>
@@ -36,10 +38,10 @@
 
                 <fieldset>
                     <label for="subject">Subject</label>
-                    <input required type="radio" name="subject" value="english"> English
-                    <input required type="radio" name="subject" value="science"> Science
-                    <input required type="radio" name="subject" value="reading"> Reading
-                    <input required type="radio" name="subject" value="social studies"> Social Studies
+                    <input required type="radio" name="subject" value="English"> English
+                    <input required type="radio" name="subject" value="Science"> Science
+                    <input required type="radio" name="subject" value="Reading"> Reading
+                    <input required type="radio" name="subject" value="Social Studies"> Social Studies
                 </fieldset>
 
             <button type="button" id="submitBtn">Submit</button>
@@ -67,12 +69,6 @@
                     break;
                 }
             }
-
-            // let english = document.getElementById('select-english').value
-            // let science = document.getElementById('select-science').value
-            // let reading = document.getElementById('select-reading').value
-            // let social_studies = document.getElementById('select-social-studies').value
-
 
             // Create an object with the form data
             const formData = {
