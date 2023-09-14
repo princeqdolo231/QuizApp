@@ -70,6 +70,12 @@
                 }
             }
 
+
+            if (!name || !grade || !selectedSubject) {
+                alert('Please fill out all the required fields before submitting.');
+                return; // Stop the submission
+            }
+
             // Create an object with the form data
             const formData = {
                 name: name,
@@ -87,9 +93,26 @@
                 radio.checked = false
             });
 
+            // Determine the URL to redirect based on the selected subject
+            let redirectUrl; // Default URL
+
+            if (selectedSubject === 'English') {
+                redirectUrl = 'englishTest.html';
+            } else if (selectedSubject === 'Science') {
+                redirectUrl = 'scienceTest.html';
+            } else if (selectedSubject === 'Reading') {
+                redirectUrl = 'readingTest.html';
+            } else if (selectedSubject === 'Social Studies') {
+                redirectUrl = `social_studiesTest.html`
+            }
+
+
             // Redirect to display.html with the objectArray as a query parameter
             const queryParams = `data=${encodeURIComponent(JSON.stringify(objectArray))}`;
-            window.location.href = `question.html?${queryParams}`;
+            window.location.href = `${redirectUrl}?${queryParams}`;
+
+            // Redirect to display Science.html with the objectArray as a query paremeter
+
         }
 
         // Add an event listener to the submit button

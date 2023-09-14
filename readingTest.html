@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Test Question</title>
+        <title>Reading Test</title>
         <link rel="stylesheet" type="text/css" href="./css/style.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -41,7 +41,7 @@
                 let studentInformation = document.createElement('div')
                 studentInformation.innerHTML += `
                 <h3>${item.grade}: ${item.subject} 1st Marking Period Test</h3>
-                <h3>NAME: ${item.name} DATE: ${date.toDateString()} Score: </h3>
+                <h3>Name: ${item.name} DATE: ${date.toDateString()} Score: </h3>
                 `;
                 studentContainer.appendChild(studentInformation);
             });

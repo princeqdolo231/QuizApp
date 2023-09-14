@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Science Test</title>
+        <link rel="stylesheet" type="text/css" href="./css/style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <header>
+            <h1>Lorpu Zarwu Christian Revival Day-Care and Primary School</h1>
+            <h3>Chocolate City, Gardnersville</h3>
+        </header>
+        <div id="studentFormData">
+            
+        </div>
+
+        <hr>
+
+        <div>
+            <h3>First Marking Period Test</h3>
+        </div>
+    
+    <!--JavaScript Files Links Below-->
+    <script>
+        // Retrieve the query parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const dataParam = urlParams.get('data');
+
+        if (dataParam) {
+            // Parse the data back into an array
+            const objectArray = JSON.parse(decodeURIComponent(dataParam));
+
+            // Display the data on the page
+            let studentContainer = document.getElementById('studentFormData');
+            let date = new Date;
+            objectArray.forEach(item => {
+                let studentInformation = document.createElement('div')
+                studentInformation.innerHTML += `
+                <h3>${item.grade}: ${item.subject} 1st Marking Period Test</h3>
+                <h3>Name: ${item.name} DATE: ${date.toDateString()} Score: </h3>
+                `;
+                studentContainer.appendChild(studentInformation);
+            });
+        }
+    </script>
+    </body>
+</html>
