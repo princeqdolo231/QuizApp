@@ -23,7 +23,17 @@
         <div>
             <h3>First Marking Period Test</h3>
         </div>
+
+
+        <div id="questionsContainer">
+            <!-- Questions will be dynamically generated here -->
+        </div>
+
+        <div id="studentFormData">
+            <!-- Score will be displayed here -->
+        </div>
     
+        <button id="submitBtn">Submit</button> <!-- Add the submit button -->
     <!--JavaScript Files Links Below-->
     <script>
         // Retrieve the query parameter
@@ -46,6 +56,80 @@
                 studentContainer.appendChild(studentInformation);
             });
         }
+
+          // Define an array of questions with answer options and correct answers
+          const questions = [
+            {
+                question: "Question 1: What is the capital of France?",
+                options: ["A. London", "B. Berlin", "C. Madrid", "D. Paris"],
+                correctAnswer: "D"
+            },
+            {
+                question: "Question 2: Which planet is known as the Red Planet?",
+                options: ["A. Venus", "B. Mars", "C. Jupiter", "D. Saturn"],
+                correctAnswer: "B"
+            },
+            // Add more questions here...
+        ];
+
+        // Shuffle function to randomize answer options
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        // Function to display questions
+        function displayQuestions() {
+            const questionsContainer = document.getElementById('questionsContainer');
+
+            // Shuffle the answer options for each question
+            questions.forEach(question => {
+                shuffleArray(question.options);
+            });
+
+            // Generate and display the questions
+            questions.forEach((question, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.innerHTML = `
+                    <p>${question.question}</p>
+                    <form>
+                        <label><input type="radio" name="q${index}" value="${question.options[0]}"> ${question.options[0]}</label><br>
+                        <label><input type="radio" name="q${index}" value="${question.options[1]}"> ${question.options[1]}</label><br>
+                        <label><input type="radio" name="q${index}" value="${question.options[2]}"> ${question.options[2]}</label><br>
+                        <label><input type="radio" name="q${index}" value="${question.options[3]}"> ${question.options[3]}</label><br>
+                    </form>
+                `;
+                questionsContainer.appendChild(questionDiv);
+            });
+        }
+
+        // Call the displayQuestions function to generate and display questions
+        displayQuestions();
+
+        // Function to calculate the user's score
+        function calculateScore() {
+            let score = 0;
+
+            questions.forEach((question, index) => {
+                const selectedAnswer = document.querySelector(`input[name="q${index}"]:checked`);
+
+                if (selectedAnswer) {
+                    if (selectedAnswer.value === question.correctAnswer) {
+                        score += 10; // Each question is worth 10 points
+                    }
+                }
+            });
+
+            // Display the user's score
+            const studentScoreContainer = document.getElementById('studentFormData');
+            studentScoreContainer.innerHTML = `<h3>Your Score: ${score} out of ${questions.length * 10}</h3>`;
+        }
+
+        // Add an event listener to the submit button to calculate the score
+        const submitBtn = document.getElementById('submitBtn');
+        submitBtn.addEventListener('click', calculateScore);
     </script>
     </body>
 </html>
